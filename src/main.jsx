@@ -35,7 +35,14 @@ import {
   HelpCircle,
 } from "lucide-react";
 import { api, call, embedded, onContext } from "./transport";
+import { Mascot, MascotStudio, mascots } from "./Mascot";
+import "@fontsource/ibm-plex-sans/latin-400.css";
+import "@fontsource/ibm-plex-sans/latin-500.css";
+import "@fontsource/ibm-plex-sans/latin-600.css";
+import "@fontsource/barlow-condensed/latin-600.css";
+import "@fontsource/barlow-condensed/latin-700.css";
 import "./style.css";
+import "./identity.css";
 const hosts = [
   {
     id: "professor",
@@ -75,6 +82,15 @@ const countdown = (ms) => {
   );
 };
 function App() {
+  const [mascotKind, setMascotKind] = useState(() => {
+    const saved = localStorage.getItem("oneshot-mascot");
+    return ["slug", "ticket"].includes(saved) ? saved : "slug";
+  });
+  const [themeReaction, setThemeReaction] = useState(false);
+  const themeMounted = useRef(false);
+  useEffect(() => {
+    localStorage.setItem("oneshot-mascot", mascotKind);
+  }, [mascotKind]);
   const [data, setData] = useState(null),
     [game, setGame] = useState(null),
     [screen, setScreen] = useState("play"),
@@ -245,6 +261,28 @@ function App() {
   }, [screen, period, clubFilter]);
   const q = game?.question,
     canAnswer = q && !q.answered && !q.reveal && now < q.deadline && !busy;
+  const mascotMood = game?.finished
+    ? "celebrate"
+    : q?.reveal
+      ? q.result?.correct
+        ? "celebrate"
+        : "oops"
+      : q?.answered
+        ? "thinking"
+        : q && q.deadline - now < 6000
+          ? "urgent"
+          : themeReaction
+            ? "theme"
+            : "idle";
+  useEffect(() => {
+    if (!themeMounted.current) {
+      themeMounted.current = true;
+      return;
+    }
+    setThemeReaction(true);
+    const timer = setTimeout(() => setThemeReaction(false), 1500);
+    return () => clearTimeout(timer);
+  }, [theme, hostTheme]);
   async function submit() {
     if (!canAnswer || !selected.trim()) return;
     await perform("answer", {
@@ -496,18 +534,16 @@ function App() {
                     </button>
                   </div>
                 </div>
-                <div className="orbit-art" aria-hidden="true">
-                  <div className="orbit o1" />
-                  <div className="orbit o2" />
-                  <div className="orbit o3" />
-                  <div className="orb">
-                    <Target />
-                  </div>
-                  <span className="art-label">KNOWLEDGE IS YOUR EDGE</span>
-                  <div className="art-spark s1">✦</div>
-                  <div className="art-spark s2">✦</div>
+                <div className="mascot-stage">
+                  <span className="stage-note">ONE OF THE GOOD ONES.</span>
+                  <Mascot kind={mascotKind} mood={mascotMood} />
+                  <p className="mascot-caption">
+                    <strong>{mascots[mascotKind].name}</strong> is in your
+                    corner.<span>Move your pointer. Give them a tap.</span>
+                  </p>
                 </div>
               </div>
+              <MascotStudio kind={mascotKind} onChange={setMascotKind} />
               <div className="sectionhead">
                 <h2>Your next shot</h2>
                 <span className="tag">
@@ -696,6 +732,24 @@ function App() {
                   {game.mode === "practice" ? "practice players" : "players"}
                 </small>
               </span>
+            </div>
+            <div className="game-sidekick">
+              <Mascot kind={mascotKind} mood={mascotMood} />
+              <p>
+                <strong>{mascots[mascotKind].name}</strong>
+                <br />
+                {game.finished
+                  ? "That’s a wrap. Take a bow."
+                  : q?.reveal
+                    ? q.result?.correct
+                      ? "Knew you had it in you."
+                      : "Shake it off. There’s another shot."
+                    : q?.answered
+                      ? "Locked in. Now we wait."
+                      : q && q.deadline - now < 6000
+                        ? "Clock’s ticking. Trust yourself."
+                        : "Take a breath. You’ve got this."}
+              </p>
             </div>
             {game.finished ? (
               <section className="results card">

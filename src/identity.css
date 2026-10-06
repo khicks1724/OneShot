@@ -1,0 +1,619 @@
+/* One Shot: an ink-and-paper game show, rather than a neon dashboard. */
+:root {
+  font-family: "IBM Plex Sans", sans-serif;
+  --bg: #f0eadf;
+  --surface: #faf7ef;
+  --surface2: #e9e5dc;
+  --text: #232b36;
+  --muted: #646b72;
+  --line: #d0cec5;
+  --accent: #245bb7;
+  --action: #b53e35;
+  --signal: #ad3b32;
+  --accent-soft: #e2e8ee;
+  --stage: #e2e6e3;
+  --shadow: none;
+  font-synthesis: none;
+}
+:root[data-theme="dark"] {
+  --bg: #171b20;
+  --surface: #21262d;
+  --surface2: #2b3139;
+  --text: #f2f4f6;
+  --muted: #a8b0ba;
+  --line: #414951;
+  --accent: #91b7f3;
+  --action: #426ec0;
+  --signal: #e2e8f0;
+  --accent-soft: #29374a;
+  --stage: #2a3543;
+  --shadow: none;
+}
+:root[data-theme="dark"] .mascot {
+  --ink: #111a29;
+  --paper: #f4f6fa;
+  --character-blue: #6d96dd;
+}
+h1,
+h2,
+h3,
+.brand,
+.countdown b,
+.resultstats b,
+.statcard b,
+.momentum b,
+.scorestrip b {
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+h1 {
+  font-size: 64px;
+  line-height: 1.02;
+}
+h2 {
+  font-size: 25px;
+}
+h3 {
+  font-size: 26px;
+}
+.brand {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  gap: 8px;
+}
+.brand > span {
+  color: var(--signal);
+}
+.topbar {
+  height: 88px;
+}
+.topbar nav button {
+  font-size: 13px;
+  letter-spacing: 0;
+}
+.topbar nav button.active:after {
+  background: var(--signal);
+  height: 3px;
+}
+.iconbutton {
+  border-radius: 5px;
+}
+.avatar {
+  background: var(--accent-soft);
+  border-color: var(--line);
+  color: var(--accent);
+}
+.statusbar {
+  letter-spacing: 0.8px;
+  font-weight: 500;
+}
+.hero {
+  border-radius: 8px;
+  min-height: 438px;
+  padding: 29px 30px 32px;
+  border-top: 4px solid var(--accent);
+  background: var(--surface);
+  overflow: hidden;
+}
+.hero-text {
+  width: calc(100% - 280px);
+}
+.hero h1 {
+  font-size: 76px;
+  line-height: 0.97;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  margin: 26px 0 0;
+}
+.hero em {
+  color: var(--accent);
+}
+.hero p {
+  font-size: 14px;
+  line-height: 1.65;
+}
+.hero .eyebrow .quiet {
+  display: none;
+}
+.hero-actions {
+  gap: 15px;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.primary {
+  color: #fff;
+  background: var(--action);
+  box-shadow: none;
+  border-radius: 5px;
+  font-size: 13px;
+  min-height: 44px;
+}
+.primary:hover:not(:disabled) {
+  background: var(--text);
+  color: var(--surface);
+}
+.primary:disabled {
+  background: var(--surface2);
+  color: var(--muted);
+  opacity: 1;
+  border: 1px solid var(--line);
+}
+.secondary {
+  background: var(--surface);
+  border-radius: 5px;
+  font-size: 12px;
+}
+.textbutton {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 500;
+}
+.pill {
+  color: var(--signal);
+  border: 0;
+  border-bottom: 1px solid var(--signal);
+  border-radius: 0;
+  padding: 4px 0;
+  background: none;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+.card,
+.showcard {
+  border-radius: 8px;
+  box-shadow: none;
+}
+.tag {
+  border-radius: 3px;
+  background: var(--surface2);
+  font-size: 10px;
+}
+.tag.purple {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-color: var(--line);
+}
+.sectionhead h2 {
+  font-size: 25px;
+}
+.sectionhead {
+  margin-top: 25px;
+}
+.showicon,
+.club-icon {
+  background: var(--accent-soft);
+  border-radius: 6px;
+  color: var(--accent);
+}
+.showtop h3 {
+  font-size: 26px;
+}
+.showtop p {
+  font-size: 12px;
+}
+.showbottom {
+  background: transparent;
+  border-top: 1px solid var(--line);
+}
+.countdown b {
+  font-size: 32px;
+}
+.categories > span {
+  font-size: 11px;
+}
+.category-dot,
+.c1,
+.c4 {
+  background: var(--accent);
+}
+.c2,
+.c5 {
+  background: var(--signal);
+}
+.rounds {
+  border-radius: 5px;
+  background: transparent;
+}
+.rounds > div {
+  padding: 17px 12px;
+}
+.rounds b {
+  font:
+    600 20px "Barlow Condensed",
+    sans-serif;
+}
+.rounds span {
+  font-size: 10px;
+}
+.finalstrip {
+  color: var(--signal);
+}
+.finalstrip b {
+  font-size: 12px;
+}
+.finalstrip span {
+  font-size: 11px;
+}
+.hostcard .sectionhead h2,
+aside h2 {
+  font-size: 22px;
+}
+.host-portrait {
+  background: var(--accent-soft);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+}
+.host-portrait:before,
+.host-portrait:after {
+  border-color: var(--accent);
+  opacity: 0.14;
+  border-style: solid;
+}
+.host-portrait > span {
+  background: var(--surface);
+  border-radius: 2px;
+}
+.hostcard h3 {
+  font-size: 27px;
+}
+.hostcard p {
+  font-size: 12px;
+}
+.hostcard blockquote {
+  border-left-color: var(--signal);
+  font-style: normal;
+  font-size: 13px;
+}
+.momentum b {
+  font-size: 34px;
+}
+.momentum span {
+  font-size: 11px;
+}
+.rating > span {
+  font-size: 11px;
+}
+.small-note p {
+  font-size: 11px;
+}
+.dot {
+  background: var(--signal);
+}
+footer {
+  font-size: 11px;
+}
+.smallbrand {
+  font-size: 20px;
+}
+.connection {
+  font-size: 10px;
+}
+.questioncard {
+  border-top: 4px solid var(--accent);
+}
+.questioncard h1 {
+  font-size: 38px;
+  line-height: 1.12;
+  letter-spacing: 0;
+  font-weight: 600;
+}
+.choice {
+  border-radius: 5px;
+  background: var(--surface);
+  font-size: 15px;
+}
+.choice.selected,
+.choice.right {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.choice.wrong {
+  border-color: var(--signal);
+  color: var(--signal);
+}
+.choice-letter {
+  border-radius: 3px;
+}
+.timertrack > div {
+  background: var(--accent);
+}
+.wager {
+  border-radius: 5px;
+  background: var(--accent-soft);
+  border-color: var(--line);
+}
+.wager button.active {
+  background: var(--surface);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.hint,
+.locked {
+  border-radius: 5px;
+  background: var(--accent-soft);
+}
+.lifelines button {
+  border-radius: 4px;
+}
+.progressrounds .current {
+  color: var(--accent);
+}
+.results h1 {
+  font-size: 48px;
+}
+.result-icon {
+  background: var(--accent-soft);
+  border-color: var(--line);
+  border-radius: 8px;
+  color: var(--accent);
+}
+.coach {
+  background: var(--surface2);
+  border-radius: 5px;
+}
+.answertrail .correct {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+.answertrail .missed {
+  background: var(--surface2);
+  color: var(--signal);
+}
+.pageheading h1 {
+  font-size: 60px;
+  line-height: 1.02;
+}
+.page-art {
+  background: none;
+  border: 0;
+  border-radius: 0;
+  color: var(--accent);
+  transform: rotate(-5deg);
+}
+.tabs,
+.filters select {
+  border-radius: 5px;
+}
+.tabs button.active {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+.boardrow.you {
+  background: var(--accent-soft);
+}
+.boardrow b {
+  font-weight: 600;
+}
+.rank1 {
+  color: var(--signal);
+}
+.rank2,
+.rank3 {
+  color: var(--accent);
+}
+.clubcard h3 {
+  font-size: 30px;
+}
+.friendcard h3,
+.accountcard h3 {
+  font-size: 27px;
+}
+.rival {
+  background: var(--surface);
+}
+.statcard b {
+  font-size: 42px;
+}
+.badge-row > div {
+  border-radius: 5px;
+  border-color: var(--line);
+  background: var(--accent-soft);
+}
+.bar > span {
+  background: var(--accent);
+}
+.modal {
+  border-radius: 8px;
+}
+.modal h2 {
+  font-size: 37px;
+  letter-spacing: 0;
+}
+.modalback {
+  backdrop-filter: blur(3px);
+}
+input,
+select {
+  border-radius: 5px;
+  background: var(--surface);
+}
+.host-options button {
+  border-radius: 5px;
+}
+.host-options button.selected {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+.host-icon {
+  border-radius: 5px;
+}
+.invitation {
+  border-radius: 5px;
+  background: var(--accent-soft);
+  border-color: var(--line);
+}
+.toast {
+  border-radius: 5px;
+}
+.toast.error {
+  border-color: var(--signal);
+}
+.formerror {
+  color: var(--signal) !important;
+}
+.danger {
+  border-color: var(--signal);
+  color: var(--signal);
+  border-radius: 5px;
+}
+@media (min-width: 1400px) {
+  .hero {
+    min-height: 452px;
+  }
+  .hero h1 {
+    font-size: 82px;
+  }
+  .mascot-stage {
+    right: 20px;
+    top: 82px;
+    width: 330px;
+  }
+  .hero-text {
+    width: calc(100% - 315px);
+  }
+}
+@media (max-width: 1100px) {
+  .hero {
+    padding: 25px;
+    min-height: 424px;
+  }
+  .hero h1 {
+    font-size: 70px;
+  }
+  .hero-text {
+    width: calc(100% - 210px);
+  }
+  .hero-actions .primary {
+    font-size: 11px;
+  }
+  .rounds b {
+    font-size: 18px;
+  }
+  .hero p {
+    font-size: 12px;
+  }
+  .hero-actions {
+    gap: 14px;
+  }
+}
+@media (max-width: 850px) {
+  .hero {
+    min-height: 430px;
+  }
+  .hero h1 {
+    font-size: 76px;
+  }
+  .mascot-stage {
+    right: 15px;
+    top: 80px;
+    width: 290px;
+  }
+  .hero-text {
+    width: calc(100% - 260px);
+  }
+  .hero-actions {
+    flex-wrap: wrap;
+  }
+  .profilelayout {
+    grid-template-columns: 1fr 1fr;
+  }
+  .topbar .brand {
+    font-size: 28px;
+  }
+  .pageheading h1 {
+    font-size: 54px;
+  }
+}
+@media (max-width: 600px) {
+  .hero {
+    padding: 24px;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .hero-text {
+    width: 100%;
+    z-index: 2;
+  }
+  .hero h1 {
+    font-size: 60px;
+    line-height: 0.96;
+    margin-top: 23px;
+  }
+  .hero p {
+    font-size: 13px;
+  }
+  .hero-actions {
+    gap: 15px;
+  }
+  .hero-actions .primary {
+    font-size: 12px;
+  }
+  .hero .mascot-stage {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 220px;
+    margin-top: -6px;
+  }
+  .sectionhead h2 {
+    font-size: 23px;
+  }
+  .showtop h3 {
+    font-size: 25px;
+  }
+  .rounds b {
+    font-size: 17px;
+    line-height: 1;
+  }
+  .rounds > div {
+    padding: 14px 7px;
+  }
+  .finalstrip span {
+    font-size: 10px;
+  }
+  .hostcard h3 {
+    font-size: 27px;
+  }
+  .hostcard .host-portrait {
+    border-radius: 5px;
+  }
+  .pageheading h1 {
+    font-size: 48px;
+  }
+  .questioncard h1 {
+    font-size: 31px;
+  }
+  .results h1 {
+    font-size: 39px;
+  }
+  .resultstats b {
+    font-size: 32px;
+  }
+  .statcard b {
+    font-size: 39px;
+  }
+  .modal h2 {
+    font-size: 34px;
+  }
+  .topbar nav button.active:after {
+    background: var(--signal);
+  }
+  .topbar nav button.active {
+    color: var(--accent);
+  }
+  .topbar nav {
+    background: var(--surface);
+  }
+  .mascot-studio {
+    padding: 17px;
+  }
+  .topbar .brand {
+    font-size: 28px;
+  }
+}

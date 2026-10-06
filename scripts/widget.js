@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync } from "node:fs";
+import { cpSync, readFileSync, writeFileSync } from "node:fs";
 const html = readFileSync("dist/index.html", "utf8")
   .replace(
     /<script[^>]*src="[^"]+"[^>]*><\/script>/,
@@ -10,4 +10,5 @@ const html = readFileSync("dist/index.html", "utf8")
     () => `<style>${readFileSync("dist/app.css", "utf8")}</style>`,
   );
 writeFileSync("dist/widget.html", html);
+cpSync("docs/licenses", "dist/licenses", { recursive: true });
 console.log("Built self-contained ChatGPT widget.");

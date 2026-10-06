@@ -41,6 +41,7 @@ export function createApp({
           styleSrc: ["'self'", "'unsafe-inline'"],
           connectSrc: ["'self'"],
           imgSrc: ["'self'", "data:"],
+          fontSrc: ["'self'", "data:"],
           frameAncestors: ["'self'"],
         },
       },

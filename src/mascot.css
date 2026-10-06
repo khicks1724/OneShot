@@ -1,0 +1,457 @@
+.mascot {
+  --look-x: 0px;
+  --look-y: 0px;
+  --lean: 0deg;
+  --ink: #202b3d;
+  --character-blue: #4777cc;
+  --paper: #fff5df;
+  --character-signal: var(--signal);
+  padding: 0;
+  background: none;
+  border: 0;
+  display: block;
+  width: 100%;
+  touch-action: manipulation;
+}
+.mascot svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  display: block;
+}
+.mascot .character {
+  transform-origin: 150px 235px;
+  transform: rotate(var(--lean));
+  transition: transform 0.35s ease;
+}
+.mascot-shadow {
+  fill: var(--ink);
+  opacity: 0.1;
+}
+.mascot-body {
+  fill: var(--character-blue);
+  stroke: var(--ink);
+  stroke-width: 3;
+  stroke-linejoin: round;
+}
+.mascot-belly {
+  fill: #315a9e;
+}
+.antenna,
+.mascot-arm,
+.mascot-leg {
+  stroke: var(--ink);
+  stroke-width: 7;
+  fill: none;
+  stroke-linecap: round;
+}
+.antenna {
+  stroke: var(--character-blue);
+  stroke-width: 10;
+}
+.eyewhite {
+  fill: var(--paper);
+  stroke: var(--ink);
+  stroke-width: 3;
+}
+.pupil {
+  fill: var(--ink);
+  transform: translate(var(--look-x), var(--look-y));
+  transition: transform 0.18s ease;
+}
+.eye-glint {
+  fill: white;
+}
+.eye {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: mascot-blink 6s infinite;
+}
+.eye-right {
+  animation-delay: 0.1s;
+}
+.mascot-hand,
+.shoe {
+  fill: var(--paper);
+  stroke: var(--ink);
+  stroke-width: 3;
+  stroke-linejoin: round;
+}
+.shoe {
+  fill: var(--character-blue);
+}
+.front-arm {
+  transform-origin: 205px 185px;
+}
+.eyebrow,
+.mouth {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+.cheek {
+  stroke: var(--paper);
+  stroke-width: 4;
+  stroke-linecap: round;
+  opacity: 0.65;
+}
+.tooth {
+  fill: var(--paper);
+}
+.badge-fill {
+  fill: var(--paper);
+  stroke: var(--ink);
+  stroke-width: 1.5;
+}
+.badge-number {
+  fill: var(--ink);
+  font:
+    700 15px "Barlow Condensed",
+    sans-serif;
+}
+.worried {
+  display: none;
+}
+.ticket-body {
+  fill: var(--paper);
+  stroke: var(--ink);
+  stroke-width: 3;
+}
+.ticket-edge {
+  stroke: var(--character-blue);
+  stroke-width: 2;
+  stroke-dasharray: 3 4;
+}
+.ticket-cap {
+  fill: var(--character-signal);
+  stroke: var(--ink);
+  stroke-width: 3;
+}
+.cap-brim {
+  stroke: var(--ink);
+  stroke-width: 4;
+  fill: none;
+  stroke-linecap: round;
+}
+.ticket-rule {
+  stroke: var(--character-signal);
+  stroke-width: 2;
+}
+.ticket-number {
+  font:
+    700 24px "Barlow Condensed",
+    sans-serif;
+  fill: var(--character-blue);
+}
+.ticket .front-arm {
+  transform-origin: 207px 134px;
+}
+.celebration-marks,
+.thinking-marks {
+  display: none;
+  stroke: var(--character-signal);
+  stroke-width: 3;
+  fill: none;
+  stroke-linecap: round;
+}
+.thinking-marks {
+  stroke: none;
+  fill: var(--ink);
+}
+.thinking-marks text {
+  font:
+    700 29px "Barlow Condensed",
+    sans-serif;
+}
+.mascot:hover .front-arm,
+.mascot[data-mood="wave"] .front-arm {
+  animation: mascot-wave 0.35s ease-in-out 4;
+}
+.mascot[data-mood="celebrate"] .character {
+  animation: mascot-hop 0.65s ease 3;
+}
+.mascot[data-mood="celebrate"] .celebration-marks {
+  display: block;
+  animation: mascot-pop 0.8s ease 3;
+}
+.mascot[data-mood="oops"] .character {
+  animation: mascot-shake 0.45s ease 2;
+}
+.mascot[data-mood="oops"] .worried {
+  display: block;
+}
+.mascot[data-mood="oops"] .smile,
+.mascot[data-mood="oops"] .tooth {
+  display: none;
+}
+.mascot[data-mood="thinking"] .thinking-marks {
+  display: block;
+}
+.mascot[data-mood="thinking"] .character {
+  transform: rotate(-4deg);
+}
+.mascot[data-mood="urgent"] .character {
+  animation: mascot-bounce 0.7s ease-in-out infinite;
+}
+.mascot[data-mood="theme"] .front-arm {
+  animation: mascot-wave 0.4s ease 3;
+}
+.mascot.compact {
+  pointer-events: none;
+}
+.mascot.compact .eye {
+  animation: none;
+}
+.mascot-stage {
+  position: absolute;
+  right: 14px;
+  top: 82px;
+  width: 300px;
+  z-index: 1;
+}
+.mascot-stage:before {
+  content: "";
+  position: absolute;
+  inset: 24px 15px 32px;
+  border-radius: 50%;
+  background: var(--stage);
+  z-index: -1;
+}
+.mascot-caption {
+  text-align: center;
+  color: var(--muted);
+  font-size: 11px;
+  margin: 0;
+}
+.mascot-caption strong {
+  color: var(--text);
+  font-weight: 600;
+}
+.mascot-caption span {
+  display: block;
+  margin-top: 6px;
+  font-size: 10px;
+}
+.mascot-stage .stage-note {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  font-size: 9px;
+  letter-spacing: 1px;
+  border: 1px solid var(--line);
+  padding: 7px 10px;
+  background: var(--surface);
+  transform: rotate(6deg);
+  color: var(--signal);
+}
+.mascot-studio {
+  margin: 22px 0 0;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  padding: 18px 20px;
+  border-radius: 8px;
+}
+.studio-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 13px;
+}
+.studio-heading > span:last-child {
+  font-size: 11px;
+  color: var(--muted);
+}
+.mascot-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.mascot-options > button {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  border-radius: 6px;
+  padding: 4px 12px 4px 0;
+  gap: 8px;
+}
+.mascot-options > button.chosen {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.mascot-options .compact {
+  width: 82px;
+  flex-shrink: 0;
+}
+.mascot-options > button > span:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+.mascot-options b {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+}
+.mascot-options small {
+  font-size: 10px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.mascot-selection {
+  font-size: 7px;
+  letter-spacing: 0.7px;
+  max-width: 49px;
+  color: var(--accent);
+  line-height: 1.8;
+}
+.game-sidekick {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 20px;
+  padding: 0 8px 5px;
+}
+.game-sidekick .mascot {
+  width: 80px;
+  flex-shrink: 0;
+}
+.game-sidekick p {
+  margin: 0;
+  font-size: 12px;
+}
+.game-sidekick strong {
+  color: var(--text);
+}
+@keyframes mascot-blink {
+  0%,
+  44%,
+  48%,
+  100% {
+    transform: scaleY(1);
+  }
+  46% {
+    transform: scaleY(0.07);
+  }
+}
+@keyframes mascot-wave {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(-18deg);
+  }
+}
+@keyframes mascot-hop {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--lean));
+  }
+  45% {
+    transform: translateY(-12px) rotate(-5deg);
+  }
+  70% {
+    transform: translateY(0) scaleY(0.97);
+  }
+}
+@keyframes mascot-pop {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes mascot-shake {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  30% {
+    transform: rotate(-5deg);
+  }
+  70% {
+    transform: rotate(5deg);
+  }
+}
+@keyframes mascot-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+@media (max-width: 1100px) {
+  .mascot-stage {
+    right: -12px;
+    width: 260px;
+    top: 93px;
+  }
+  .mascot-options .compact {
+    width: 64px;
+  }
+  .mascot-selection {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  .mascot-stage {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 220px;
+    align-self: center;
+    margin: 0 auto;
+    z-index: 1;
+  }
+  .mascot-stage .stage-note {
+    right: -26px;
+    top: 12px;
+  }
+  .mascot-caption {
+    margin-top: -10px;
+  }
+  .mascot-caption span {
+    font-size: 9px;
+  }
+  .mascot-options {
+    grid-template-columns: 1fr;
+  }
+  .mascot-options .compact {
+    width: 74px;
+  }
+  .mascot-selection {
+    display: block;
+  }
+  .studio-heading {
+    align-items: flex-start;
+  }
+  .studio-heading > span:last-child {
+    font-size: 9px;
+  }
+  .game-sidekick .mascot {
+    width: 66px;
+  }
+  .game-sidekick p {
+    font-size: 11px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mascot * {
+    animation: none !important;
+    transition: none !important;
+  }
+  .mascot .character,
+  .mascot .pupil {
+    transform: none !important;
+  }
+}
