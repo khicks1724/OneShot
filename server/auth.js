@@ -139,15 +139,13 @@ export function installOAuth(app, db, base) {
       throw new GameError("Invalid redirect URIs.");
     const id = randomToken();
     run(db, "INSERT INTO clients VALUES(?,?)", id, JSON.stringify(redirects));
-    res
-      .status(201)
-      .json({
-        client_id: id,
-        redirect_uris: redirects,
-        token_endpoint_auth_method: "none",
-        grant_types: ["authorization_code", "refresh_token"],
-        response_types: ["code"],
-      });
+    res.status(201).json({
+      client_id: id,
+      redirect_uris: redirects,
+      token_endpoint_auth_method: "none",
+      grant_types: ["authorization_code", "refresh_token"],
+      response_types: ["code"],
+    });
   });
   function validate(args) {
     const c = one(

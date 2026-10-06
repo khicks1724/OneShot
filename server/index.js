@@ -325,16 +325,14 @@ export function createApp({
   );
   app.use((err, _req, res, _next) => {
     const status = err.status || (err instanceof z.ZodError ? 400 : 500);
-    res
-      .status(status)
-      .json({
-        error:
-          status === 500
-            ? "Something went wrong. Please try again."
-            : err instanceof z.ZodError
-              ? err.issues.map((i) => i.message).join(" ")
-              : err.message,
-      });
+    res.status(status).json({
+      error:
+        status === 500
+          ? "Something went wrong. Please try again."
+          : err instanceof z.ZodError
+            ? err.issues.map((i) => i.message).join(" ")
+            : err.message,
+    });
   });
   return { app, ctx };
 }
