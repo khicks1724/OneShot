@@ -14,7 +14,9 @@
     "check": "npm run test && npm run build",
     "test:e2e": "playwright test",
     "content": "node --env-file-if-exists=.env.local scripts/content.js",
-    "configure-plugin": "node scripts/configure-plugin.js"
+    "configure-plugin": "node scripts/configure-plugin.js",
+    "format": "prettier --write server src scripts tests *.js *.json *.html *.md docs/*.md .github/workflows/*.yml",
+    "format:check": "prettier --check server src scripts tests *.js *.json *.html *.md docs/*.md .github/workflows/*.yml"
   },
   "dependencies": {
     "@modelcontextprotocol/ext-apps": "^1.0.1",
@@ -30,6 +32,7 @@
   "devDependencies": {
     "@playwright/test": "^1.56.0",
     "@vitejs/plugin-react": "^5.0.0",
+    "prettier": "^3.6.2",
     "vite": "^7.1.0"
   }
 }

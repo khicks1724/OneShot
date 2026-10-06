@@ -26,21 +26,21 @@ On Windows, set `PLAYWRIGHT_CHANNEL=chrome` in your shell to use an installed Ch
 
 ## Implemented features
 
-| Area | Behavior |
-| --- | --- |
-| Daily show | Shared UTC appointment; ten questions, five rounds, timed reveals |
-| Scoring | Difficulty, speed buckets, streaks, confidence wagers, double-down, score floor |
-| Global Final | Top 10% advance, inclusive of tied cutoff scores; one extra free-response question |
-| Practice | Separate pool, repeatable, timed answers, excluded from ranked stats |
-| Hosts | Professor, Hype Man, Villain, Oracle; AI reactions and coaching, reliable fallbacks |
-| Identity | Own player accounts; scrypt password hashes, HTTP-only cookies, OAuth/PKCE linking |
-| Social | Private clubs, join links, club standings, mutual friend invitations, score-based rivals |
-| Profiles | Accuracy, response time, day streak, category map, performance rating, tiers, achievements |
-| Boards | Daily, rolling weekly/monthly, season, all-time, friends, club; pending correctness hidden |
-| Content | Validated starter packs, AI drafting, private manual import/edit/review, frozen published packs |
-| Interface | ChatGPT/system, light and dark themes; mobile/desktop; keyboard shortcuts, reduced motion |
-| Integration | 14 authenticated MCP tools, self-contained iframe, standard MCP Apps bridge, OAuth discovery |
-| Operations | Persistent SQLite WAL, schema upgrades, health check, account deletion, Docker, GitHub CI |
+| Area         | Behavior                                                                                        |
+| ------------ | ----------------------------------------------------------------------------------------------- |
+| Daily show   | Shared UTC appointment; ten questions, five rounds, timed reveals                               |
+| Scoring      | Difficulty, speed buckets, streaks, confidence wagers, double-down, score floor                 |
+| Global Final | Top 10% advance, inclusive of tied cutoff scores; one extra free-response question              |
+| Practice     | Separate pool, repeatable, timed answers, excluded from ranked stats                            |
+| Hosts        | Professor, Hype Man, Villain, Oracle; AI reactions and coaching, reliable fallbacks             |
+| Identity     | Own player accounts; scrypt password hashes, HTTP-only cookies, OAuth/PKCE linking              |
+| Social       | Private clubs, join links, club standings, mutual friend invitations, score-based rivals        |
+| Profiles     | Accuracy, response time, day streak, category map, performance rating, tiers, achievements      |
+| Boards       | Daily, rolling weekly/monthly, season, all-time, friends, club; pending correctness hidden      |
+| Content      | Validated starter packs, AI drafting, private manual import/edit/review, frozen published packs |
+| Interface    | ChatGPT/system, light and dark themes; mobile/desktop; keyboard shortcuts, reduced motion       |
+| Integration  | 14 authenticated MCP tools, self-contained iframe, standard MCP Apps bridge, OAuth discovery    |
+| Operations   | Persistent SQLite WAL, schema upgrades, health check, account deletion, Docker, GitHub CI       |
 
 ## Connect in ChatGPT
 

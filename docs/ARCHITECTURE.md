@@ -4,16 +4,16 @@ Browser or ChatGPT iframe → shared validated actions → authoritative game en
 
 ChatGPT calls Streamable HTTP `/mcp` with an OAuth access token. Its widget calls the same tools over the standard MCP Apps bridge. Browser requests use HTTP-only cookie sessions. Both paths enforce ownership; player IDs from tool arguments are never trusted.
 
-| Module | Responsibility |
-| --- | --- |
-| `server/store.js` | Schema, indexes, additive migrations and transactions |
-| `server/engine.js` | Shared clock, admission, scoring, reveals, finals, profiles, standings |
-| `server/questions.js`, `practice.js` | Validated canonical content and separate public practice pool |
-| `server/auth.js` | Password hashes, hashed opaque tokens, PKCE, consent, refresh rotation |
-| `server/actions.js`, `mcp.js` | Common action contract and authenticated MCP tools/UI |
-| `server/ai.js` | Responses API, host personas, coaching, content drafts and fallback |
-| `server/index.js` | HTTP routes, rate limits, editorial administration, deletion and health |
-| `src/transport.js`, `main.jsx` | Host bridge, theme, interactive game and account screens |
+| Module                               | Responsibility                                                          |
+| ------------------------------------ | ----------------------------------------------------------------------- |
+| `server/store.js`                    | Schema, indexes, additive migrations and transactions                   |
+| `server/engine.js`                   | Shared clock, admission, scoring, reveals, finals, profiles, standings  |
+| `server/questions.js`, `practice.js` | Validated canonical content and separate public practice pool           |
+| `server/auth.js`                     | Password hashes, hashed opaque tokens, PKCE, consent, refresh rotation  |
+| `server/actions.js`, `mcp.js`        | Common action contract and authenticated MCP tools/UI                   |
+| `server/ai.js`                       | Responses API, host personas, coaching, content drafts and fallback     |
+| `server/index.js`                    | HTTP routes, rate limits, editorial administration, deletion and health |
+| `src/transport.js`, `main.jsx`       | Host bridge, theme, interactive game and account screens                |
 
 ## Persistence and timing
 

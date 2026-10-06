@@ -6,14 +6,14 @@ A daily AI-hosted trivia show inside ChatGPT, with a standalone companion app. O
 
 ## Rules
 
-| Round | Questions | Format | Time each |
-| --- | --- | --- | --- |
-| Warmup | 1–2 | Multiple choice | 25 seconds |
-| Culture | 3–4 | Multiple choice | 25 seconds |
-| Curveball | 5–6 | Multiple choice | 25 seconds |
-| The Wager | 7–8 | Multiple choice + confidence | 25 seconds |
-| Final Boss | 9–10 | Free response | 30 seconds |
-| Global Final | 11 | Free response, qualified players | 30 seconds |
+| Round        | Questions | Format                           | Time each  |
+| ------------ | --------- | -------------------------------- | ---------- |
+| Warmup       | 1–2       | Multiple choice                  | 25 seconds |
+| Culture      | 3–4       | Multiple choice                  | 25 seconds |
+| Curveball    | 5–6       | Multiple choice                  | 25 seconds |
+| The Wager    | 7–8       | Multiple choice + confidence     | 25 seconds |
+| Final Boss   | 9–10      | Free response                    | 30 seconds |
+| Global Final | 11        | Free response, qualified players | 30 seconds |
 
 Eight-second global reveals separate questions. Admission closes when question 1 ends. Top 10% by pre-final score qualify, including all tied cutoff scores. One lifeline per game: curated clue, remove two wrong choices, or double reward and risk. All progression, scoring and deadlines are server-controlled. Practice uses a separate pool, is repeatable, and is excluded from ranked stats.
 

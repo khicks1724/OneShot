@@ -1,4 +1,9 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
-  "mcpServers": { "one-shot": { "type": "streamable-http", "url": "http://localhost:8787/mcp" } }
+  "mcpServers": {
+    "one-shot": {
+      "type": "streamable-http",
+      "url": "http://localhost:8787/mcp"
+    }
+  }
 }

@@ -1,8 +1,76 @@
-let nextId=0, bridgeReady, hostContext={}, listener=()=>{};
-const pending=new Map();
-export const embedded=window.parent!==window;
-export function onContext(fn){listener=fn;fn(hostContext);}
-function request(method,params){return new Promise((resolve,reject)=>{const id=++nextId;const timeout=setTimeout(()=>{pending.delete(id);reject(new Error('ChatGPT did not respond. Try again.'));},20000);pending.set(id,{resolve,reject,timeout});window.parent.postMessage({jsonrpc:'2.0',id,method,params},'*');});}
-if(embedded){window.addEventListener('message',e=>{if(e.source!==window.parent||e.data?.jsonrpc!=='2.0')return;const m=e.data;if(m.id&&pending.has(m.id)){const p=pending.get(m.id);clearTimeout(p.timeout);pending.delete(m.id);m.error?p.reject(new Error(m.error.message)):p.resolve(m.result);}if(m.method==='ui/notifications/host-context-changed'){hostContext={...hostContext,...m.params};listener(hostContext);}if(m.method==='ui/notifications/tool-result')window.dispatchEvent(new CustomEvent('oneshot:data',{detail:m.params?.structuredContent}));});bridgeReady=request('ui/initialize',{appInfo:{name:'one-shot',version:'1.0.0'},appCapabilities:{},protocolVersion:'2026-01-26'}).then(r=>{hostContext=r.hostContext||{};listener(hostContext);window.parent.postMessage({jsonrpc:'2.0',method:'ui/notifications/initialized',params:{}},'*');});}
-export async function api(path,body,method='POST'){const res=await fetch(path,{method,headers:{'Content-Type':'application/json'},...(body?{body:JSON.stringify(body)}:{})});const data=await res.json();if(!res.ok)throw new Error(data.error||'Request failed.');return data;}
-export async function call(name,args={}){if(!embedded)return api(`/api/action/${name}`,args);await bridgeReady;const result=await request('tools/call',{name:`one_shot_${name}`,arguments:args});if(result.isError)throw new Error(result.content?.[0]?.text||'Request failed.');return result.structuredContent;}
+let nextId = 0,
+  bridgeReady,
+  hostContext = {},
+  listener = () => {};
+const pending = new Map();
+export const embedded = window.parent !== window;
+export function onContext(fn) {
+  listener = fn;
+  fn(hostContext);
+}
+function request(method, params) {
+  return new Promise((resolve, reject) => {
+    const id = ++nextId;
+    const timeout = setTimeout(() => {
+      pending.delete(id);
+      reject(new Error("ChatGPT did not respond. Try again."));
+    }, 20000);
+    pending.set(id, { resolve, reject, timeout });
+    window.parent.postMessage({ jsonrpc: "2.0", id, method, params }, "*");
+  });
+}
+if (embedded) {
+  window.addEventListener("message", (e) => {
+    if (e.source !== window.parent || e.data?.jsonrpc !== "2.0") return;
+    const m = e.data;
+    if (m.id && pending.has(m.id)) {
+      const p = pending.get(m.id);
+      clearTimeout(p.timeout);
+      pending.delete(m.id);
+      m.error ? p.reject(new Error(m.error.message)) : p.resolve(m.result);
+    }
+    if (m.method === "ui/notifications/host-context-changed") {
+      hostContext = { ...hostContext, ...m.params };
+      listener(hostContext);
+    }
+    if (m.method === "ui/notifications/tool-result")
+      window.dispatchEvent(
+        new CustomEvent("oneshot:data", {
+          detail: m.params?.structuredContent,
+        }),
+      );
+  });
+  bridgeReady = request("ui/initialize", {
+    appInfo: { name: "one-shot", version: "1.0.0" },
+    appCapabilities: {},
+    protocolVersion: "2026-01-26",
+  }).then((r) => {
+    hostContext = r.hostContext || {};
+    listener(hostContext);
+    window.parent.postMessage(
+      { jsonrpc: "2.0", method: "ui/notifications/initialized", params: {} },
+      "*",
+    );
+  });
+}
+export async function api(path, body, method = "POST") {
+  const res = await fetch(path, {
+    method,
+    headers: { "Content-Type": "application/json" },
+    ...(body ? { body: JSON.stringify(body) } : {}),
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || "Request failed.");
+  return data;
+}
+export async function call(name, args = {}) {
+  if (!embedded) return api(`/api/action/${name}`, args);
+  await bridgeReady;
+  const result = await request("tools/call", {
+    name: `one_shot_${name}`,
+    arguments: args,
+  });
+  if (result.isError)
+    throw new Error(result.content?.[0]?.text || "Request failed.");
+  return result.structuredContent;
+}

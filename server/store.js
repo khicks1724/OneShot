@@ -1,8 +1,10 @@
-import { DatabaseSync } from 'node:sqlite';
-import { mkdirSync } from 'node:fs';
-import { dirname } from 'node:path';
-export function openStore(path = process.env.DATABASE_PATH || 'data/oneshot.sqlite') {
-  if (path !== ':memory:') mkdirSync(dirname(path), { recursive: true });
+import { DatabaseSync } from "node:sqlite";
+import { mkdirSync } from "node:fs";
+import { dirname } from "node:path";
+export function openStore(
+  path = process.env.DATABASE_PATH || "data/oneshot.sqlite",
+) {
+  if (path !== ":memory:") mkdirSync(dirname(path), { recursive: true });
   const db = new DatabaseSync(path);
   db.exec(`PRAGMA journal_mode=WAL; PRAGMA foreign_keys=ON;
     CREATE TABLE IF NOT EXISTS players(id TEXT PRIMARY KEY, email TEXT UNIQUE, password TEXT, name TEXT NOT NULL, host TEXT DEFAULT 'professor', region TEXT DEFAULT 'Global', created INTEGER NOT NULL);
@@ -21,11 +23,33 @@ export function openStore(path = process.env.DATABASE_PATH || 'data/oneshot.sqli
     CREATE INDEX IF NOT EXISTS games_player ON games(player,mode);
     CREATE UNIQUE INDEX IF NOT EXISTS ranked_once ON games(player,show) WHERE mode='ranked';
     CREATE INDEX IF NOT EXISTS tokens_player ON tokens(player);`);
-  if(!db.prepare('PRAGMA table_info(answers)').all().some(c=>c.name==='score_before'))db.exec('ALTER TABLE answers ADD COLUMN score_before INTEGER DEFAULT 0');
-  if(!db.prepare('PRAGMA table_info(shows)').all().some(c=>c.name==='reviewed'))db.exec('ALTER TABLE shows ADD COLUMN reviewed INTEGER DEFAULT 0');
+  if (
+    !db
+      .prepare("PRAGMA table_info(answers)")
+      .all()
+      .some((c) => c.name === "score_before")
+  )
+    db.exec("ALTER TABLE answers ADD COLUMN score_before INTEGER DEFAULT 0");
+  if (
+    !db
+      .prepare("PRAGMA table_info(shows)")
+      .all()
+      .some((c) => c.name === "reviewed")
+  )
+    db.exec("ALTER TABLE shows ADD COLUMN reviewed INTEGER DEFAULT 0");
   return db;
 }
 export const one = (db, sql, ...args) => db.prepare(sql).get(...args);
 export const many = (db, sql, ...args) => db.prepare(sql).all(...args);
 export const run = (db, sql, ...args) => db.prepare(sql).run(...args);
-export function transaction(db, fn) { db.exec('BEGIN IMMEDIATE'); try { const result = fn(); db.exec('COMMIT'); return result; } catch (err) { db.exec('ROLLBACK'); throw err; } }
+export function transaction(db, fn) {
+  db.exec("BEGIN IMMEDIATE");
+  try {
+    const result = fn();
+    db.exec("COMMIT");
+    return result;
+  } catch (err) {
+    db.exec("ROLLBACK");
+    throw err;
+  }
+}
