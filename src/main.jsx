@@ -36,6 +36,8 @@ import {
 } from "lucide-react";
 import { api, call, embedded, onContext } from "./transport";
 import { Mascot, MascotStudio, mascots } from "./Mascot";
+import { Wordmark } from "./Wordmark";
+import "@fontsource/yesteryear/latin-400.css";
 import "@fontsource/ibm-plex-sans/latin-400.css";
 import "@fontsource/ibm-plex-sans/latin-500.css";
 import "@fontsource/ibm-plex-sans/latin-600.css";
@@ -347,9 +349,8 @@ function App() {
   if (!data)
     return (
       <main className="loading">
-        <div className="brand">
-          <Target />
-          ONE SHOT<span>.</span>
+        <div className="brand" aria-label="One Shot">
+          <Wordmark />
         </div>
         {bootError ? (
           <>
@@ -369,9 +370,8 @@ function App() {
   return (
     <div className="shell">
       <header className="topbar">
-        <button className="brand" onClick={home}>
-          <Target size={29} />
-          ONE SHOT<span>.</span>
+        <button className="brand" onClick={home} aria-label="One Shot home">
+          <Wordmark />
         </button>
         <nav aria-label="Main navigation">
           {[
@@ -494,12 +494,14 @@ function App() {
                     <span className="pill">THE DAILY CHALLENGE</span>
                     <span className="quiet">10 questions · ~6 minutes</span>
                   </div>
+                  <div className="hero-wordmark">
+                    <Wordmark crest={false} />
+                    <span className="club-signature">
+                      THE DAILY TRIVIA CLUB
+                    </span>
+                  </div>
                   <h1>
-                    One game.
-                    <br />
-                    One chance.
-                    <br />
-                    <em>One shot.</em>
+                    One game. One chance. <em>One shot.</em>
                   </h1>
                   <p>
                     A daily battle of brains. A little confidence.
@@ -535,7 +537,7 @@ function App() {
                   </div>
                 </div>
                 <div className="mascot-stage">
-                  <span className="stage-note">ONE OF THE GOOD ONES.</span>
+                  <span className="stage-note">FIRST STRING · NO. 01</span>
                   <Mascot kind={mascotKind} mood={mascotMood} />
                   <p className="mascot-caption">
                     <strong>{mascots[mascotKind].name}</strong> is in your
@@ -1425,9 +1427,8 @@ function App() {
         )}
       </main>
       <footer>
-        <span className="brand smallbrand">
-          <Target size={17} />
-          ONE SHOT<span>.</span>
+        <span className="brand smallbrand" aria-label="One Shot">
+          <Wordmark />
         </span>
         <span>A little knowledge. A daily ritual.</span>
         <button onClick={() => setModal({ type: "rules" })}>Fair play</button>

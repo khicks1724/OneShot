@@ -1,6 +1,6 @@
 # Validation
 
-Local checks: October 5, 2026, America/Los_Angeles. Identity refresh verified in the same session.
+Local checks: October 5, 2026, America/Los_Angeles. Vintage baseball identity refresh verified in the same session, including the locally loaded Yesteryear jersey script, pinstripes, original crest and mascot uniform details.
 
 ## Verified
 

@@ -4,7 +4,7 @@
 
 ![One Shot in dark mode](docs/images/desktop-dark.png)
 
-Cream, cobalt, and red in light mode; charcoal, blue, and white after dark. Choose Slugger, the curious blue slug, or Stubbs, the walking game-show ticket, under **Meet the home team**. Both follow your pointer, wave when tapped, and react to answers and theme changes. Motion respects your reduced-motion preference. See the [visual identity](docs/IDENTITY.md).
+Vintage baseball lettering, cream pinstripes, navy blue, and faded red in light mode; midnight navy, powder blue, and white after dark. Choose Slugger, the curious blue slug in a pinstriped jersey, or Stubbs, the walking game-show ticket, under **Meet the home team**. Both follow your pointer, wave when tapped, and react to answers and theme changes. Motion respects your reduced-motion preference. See the [visual identity](docs/IDENTITY.md).
 
 ## Run it
 

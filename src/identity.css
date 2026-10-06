@@ -1,32 +1,36 @@
-/* One Shot: an ink-and-paper game show, rather than a neon dashboard. */
+/* One Shot: cream flannel, navy ink, stitched lettering and scoreboard type. */
 :root {
   font-family: "IBM Plex Sans", sans-serif;
-  --bg: #f0eadf;
-  --surface: #faf7ef;
-  --surface2: #e9e5dc;
-  --text: #232b36;
-  --muted: #646b72;
-  --line: #d0cec5;
-  --accent: #245bb7;
-  --action: #b53e35;
-  --signal: #ad3b32;
-  --accent-soft: #e2e8ee;
-  --stage: #e2e6e3;
+  --bg: #ece5d5;
+  --surface: #faf4e6;
+  --surface2: #e5dfd1;
+  --text: #20334c;
+  --muted: #646963;
+  --line: #c8c3b3;
+  --accent: #24486e;
+  --action: #a43e36;
+  --signal: #a43e36;
+  --accent-soft: #e0e6e6;
+  --stage: #e2e7df;
+  --pinstripe: #24486e12;
+  --jersey-outline: #faf4e6;
   --shadow: none;
   font-synthesis: none;
 }
 :root[data-theme="dark"] {
-  --bg: #171b20;
-  --surface: #21262d;
-  --surface2: #2b3139;
+  --bg: #151e29;
+  --surface: #1d2a39;
+  --surface2: #293746;
   --text: #f2f4f6;
   --muted: #a8b0ba;
-  --line: #414951;
-  --accent: #91b7f3;
-  --action: #426ec0;
+  --line: #495666;
+  --accent: #a3bfdc;
+  --action: #446c98;
   --signal: #e2e8f0;
   --accent-soft: #29374a;
-  --stage: #2a3543;
+  --stage: #30445b;
+  --pinstripe: #a3bfdc0d;
+  --jersey-outline: #1d2a39;
   --shadow: none;
 }
 :root[data-theme="dark"] .mascot {
@@ -615,5 +619,302 @@ select {
   }
   .topbar .brand {
     font-size: 28px;
+  }
+}
+/* Original club insignia. Script stays on branding; questions use readable type. */
+.team-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--accent);
+}
+.brand .team-mark {
+  color: var(--accent);
+  margin: 0;
+}
+.team-crest {
+  width: 35px;
+  height: 35px;
+  flex-shrink: 0;
+}
+.crest-ring {
+  fill: var(--surface);
+  stroke: var(--accent);
+  stroke-width: 1.5;
+}
+.crest-seam,
+.crest-stitches {
+  fill: none;
+  stroke: var(--signal);
+  stroke-width: 1;
+}
+.team-crest text {
+  fill: var(--accent);
+  font:
+    700 24px "Barlow Condensed",
+    sans-serif;
+}
+.jersey-script {
+  display: inline-block;
+  position: relative;
+  font-family: "Yesteryear", cursive;
+  font-size: 39px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 0;
+  white-space: nowrap;
+  padding: 0 8px 8px 0;
+  transform: rotate(-6deg);
+  -webkit-text-stroke: 0.3px currentColor;
+}
+.jersey-script:after {
+  content: "";
+  position: absolute;
+  bottom: 1px;
+  left: 14%;
+  right: 2%;
+  height: 8px;
+  border-bottom: 3px solid currentColor;
+  border-radius: 0 0 65% 35%;
+  transform: skewX(-22deg);
+}
+.topbar {
+  border-bottom: 3px double var(--accent);
+}
+.topbar nav button {
+  font-weight: 600;
+}
+.hero {
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 23px,
+      var(--pinstripe) 23px 24px
+    ),
+    var(--surface);
+  border: 1px solid var(--line);
+  border-top: 5px solid var(--accent);
+  border-bottom: 5px solid var(--accent);
+  border-radius: 3px;
+  padding-top: 27px;
+}
+.hero-wordmark {
+  margin: 20px 0 24px;
+}
+.hero-wordmark .jersey-script {
+  font-size: clamp(78px, 8.5vw, 126px);
+  line-height: 1.14;
+  padding-bottom: 21px;
+  text-shadow:
+    2px 2px 0 var(--jersey-outline),
+    3px 3px 0 var(--signal);
+  -webkit-text-stroke: 0.7px currentColor;
+}
+.hero-wordmark .jersey-script:after {
+  height: 16px;
+  border-bottom-width: 7px;
+  bottom: 8px;
+}
+.club-signature {
+  display: block;
+  font:
+    600 13px "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 3px;
+  color: var(--signal);
+  margin: 8px 0 0 32px;
+}
+.hero .hero-text h1 {
+  font-size: 23px;
+  line-height: 1.25;
+  letter-spacing: 0.6px;
+  margin: 20px 0 0;
+  font-weight: 600;
+  max-width: 360px;
+}
+.hero .hero-text h1 em {
+  font-style: normal;
+  color: var(--signal);
+}
+.hero p {
+  margin-bottom: 21px;
+}
+.hero .pill {
+  border: 1px solid var(--signal);
+  padding: 5px 9px;
+  background: var(--surface);
+}
+.primary,
+.secondary {
+  border-radius: 3px;
+}
+.card,
+.showcard,
+.mascot-studio {
+  border-radius: 3px;
+}
+.showtop {
+  border-bottom: 3px double var(--line);
+}
+.showbottom {
+  border-top: 3px double var(--line);
+}
+.countdown b {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 1px;
+}
+.sectionhead h2,
+.studio-heading h2 {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.mascot-stage:before {
+  border: 3px double var(--accent);
+  background: var(--stage);
+  inset: 25px 18px 78px;
+}
+.mascot-stage .stage-note {
+  font:
+    600 11px "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 1.3px;
+  border: 1px dashed var(--signal);
+  border-radius: 2px;
+  transform: rotate(6deg);
+}
+.mascot {
+  --character-blue: #507898;
+  --ink: #20334c;
+  --paper: #faf4e6;
+}
+.mascot-belly {
+  fill: #325878;
+}
+.slug-jersey {
+  fill: var(--paper);
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+.jersey-pinstripes {
+  stroke: var(--character-blue);
+  stroke-width: 1;
+  fill: none;
+  opacity: 0.65;
+}
+.jersey-number {
+  fill: var(--character-signal);
+  stroke: var(--paper);
+  stroke-width: 1.5;
+  paint-order: stroke fill;
+  font:
+    700 24px "Barlow Condensed",
+    sans-serif;
+}
+:root[data-theme="dark"] .jersey-number {
+  fill: var(--ink);
+}
+.slug-cap {
+  fill: var(--character-blue);
+  stroke: var(--ink);
+  stroke-width: 2.5;
+}
+.slug-brim {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+.cap-monogram {
+  font:
+    400 24px "Yesteryear",
+    cursive;
+  fill: var(--paper);
+}
+.ticket-number {
+  font-family: "Barlow Condensed", sans-serif;
+}
+.mascot-options {
+  gap: 10px;
+}
+.mascot-options > button {
+  border-radius: 3px;
+}
+.mascot-options > button.chosen {
+  border: 2px solid var(--accent);
+}
+.smallbrand .jersey-script {
+  font-size: 27px;
+}
+.smallbrand .team-crest {
+  width: 24px;
+  height: 24px;
+}
+@media (min-width: 1400px) {
+  .hero {
+    min-height: 445px;
+  }
+  .hero .mascot-stage {
+    top: 85px;
+    width: 295px;
+    right: 15px;
+  }
+  .hero-text {
+    width: calc(100% - 285px);
+  }
+}
+@media (max-width: 1100px) and (min-width: 851px) {
+  .hero-wordmark .jersey-script {
+    font-size: 80px;
+  }
+  .hero .hero-text h1 {
+    font-size: 20px;
+  }
+  .hero .mascot-stage {
+    width: 215px;
+    right: 2px;
+  }
+  .club-signature {
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-left: 12px;
+  }
+}
+@media (max-width: 600px) {
+  .topbar .jersey-script {
+    font-size: 34px;
+  }
+  .topbar .team-crest {
+    width: 30px;
+    height: 30px;
+  }
+  .topbar .team-mark {
+    gap: 7px;
+  }
+  .hero {
+    padding: 24px 21px;
+    gap: 12px;
+  }
+  .hero-wordmark {
+    margin: 18px 0 20px;
+  }
+  .hero-wordmark .jersey-script {
+    font-size: clamp(78px, 23vw, 105px);
+  }
+  .hero .hero-text h1 {
+    font-size: 21px;
+    margin-top: 16px;
+  }
+  .club-signature {
+    margin-left: 22px;
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+  .hero .mascot-stage {
+    width: 210px;
+    margin-top: 0;
+    align-self: center;
+  }
+  .hero .mascot-caption {
+    margin-bottom: 4px;
   }
 }

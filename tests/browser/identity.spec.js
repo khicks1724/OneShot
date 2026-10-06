@@ -15,6 +15,7 @@ test("new typography, both mascot options, pointer response and saved selection"
   );
   expect(fonts).toContain("IBM Plex Sans");
   expect(fonts).toContain("Barlow Condensed");
+  expect(fonts).toContain("Yesteryear");
   const sidekick = page.locator(".mascot-stage .mascot");
   await expect(sidekick).toHaveClass(/slug/);
   await page.mouse.move(20, 150);

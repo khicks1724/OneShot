@@ -89,6 +89,14 @@ export function Mascot({ kind = "slug", mood = "idle", compact = false }) {
               d="M74 222 C109 223 150 233 195 229 C221 228 244 224 257 225 C242 238 223 243 195 242 L91 242 C77 242 62 234 74 222 Z"
             />
             <path
+              className="slug-jersey"
+              d="M83 203 Q139 216 198 202 L221 230 Q158 249 79 232 Z"
+            />
+            <path
+              className="jersey-pinstripes"
+              d="M93 207 L91 234 M111 211 L109 237 M130 213 L128 238 M149 213 L147 239 M168 211 L166 238 M187 207 L187 235 M203 215 L207 231"
+            />
+            <path
               className="antenna"
               d="M116 153 Q107 123 110 99 M161 151 Q174 125 176 95"
             />
@@ -110,6 +118,14 @@ export function Mascot({ kind = "slug", mood = "idle", compact = false }) {
               className="eyebrow"
               d="M89 58 Q103 52 115 58 M166 54 Q184 45 196 57"
             />
+            <path
+              className="slug-cap"
+              d="M114 151 Q115 125 139 126 Q162 127 167 150 Z"
+            />
+            <path className="slug-brim" d="M108 150 Q140 140 177 153" />
+            <text className="cap-monogram" x="140" y="144" textAnchor="middle">
+              S
+            </text>
             <path className="cheek" d="M97 181 L109 184 M166 180 L178 176" />
             <path className="mouth smile" d="M119 186 Q137 205 156 185" />
             <path className="mouth worried" d="M123 196 Q136 185 152 196" />
@@ -121,12 +137,8 @@ export function Mascot({ kind = "slug", mood = "idle", compact = false }) {
                 d="M223 150 C210 147 207 137 212 134 L220 139 L218 122 C218 116 225 116 227 122 L232 138 C241 130 248 135 241 144 L233 153 Z"
               />
             </g>
-            <path
-              className="badge-fill"
-              d="M100 209 L123 211 L121 225 L98 222 Z"
-            />
-            <text className="badge-number" x="109" y="222" textAnchor="middle">
-              1
+            <text className="jersey-number" x="150" y="232" textAnchor="middle">
+              01
             </text>
           </>
         ) : (
@@ -160,6 +172,9 @@ export function Mascot({ kind = "slug", mood = "idle", compact = false }) {
             />
             <path className="ticket-cap" d="M106 65 Q136 20 173 40 L183 67 Z" />
             <path className="cap-brim" d="M99 64 Q146 55 198 68" />
+            <text className="cap-monogram" x="146" y="58" textAnchor="middle">
+              S
+            </text>
             <g className="eye">
               <ellipse className="eyewhite" cx="126" cy="108" rx="16" ry="21" />
               <g className="pupil">
