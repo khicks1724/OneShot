@@ -1,0 +1,14 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "one-shot", "version": "1.0.0",
+  "description": "A daily AI-hosted trivia show. One game, one chance, one shot.",
+  "homepage": "https://github.com/khicks1724/OneShot",
+  "repository": "https://github.com/khicks1724/OneShot",
+  "keywords": ["trivia", "game", "daily", "leaderboard"],
+  "extensions": { "com.openai": { "interface": {
+    "displayName": "One Shot", "shortDescription": "Your daily battle of brains.",
+    "longDescription": "Enter a shared daily trivia show, choose your host, compete in clubs, and build your knowledge one shot at a time.",
+    "brandColor": "#CAF579",
+    "defaultPrompt": ["Open One Shot and show me the next daily game.", "Start an unranked practice game in One Shot.", "Show my One Shot leaderboard and player profile."]
+  } } }
+}
